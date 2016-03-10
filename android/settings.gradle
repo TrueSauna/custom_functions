@@ -1,0 +1,3 @@
+rootProject.name = 'custom_functions'
+
+include ':app'
