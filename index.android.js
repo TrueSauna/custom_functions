@@ -32,7 +32,8 @@ var Box = React.createClass({
   //funktiokutsu tässä eikä alempana <Text> -sisällä, jotta voidaan käyttää muutakin kuin jsx:ää
   testFunction2: function(){
     //tämä ei toimi:
-    return this.testFunction1();
+    //return this.testFunction1();
+      return custom_functions.testFunction1();
   },
 
   render: function(){
