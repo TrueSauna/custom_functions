@@ -11,10 +11,23 @@ import React, {
   View
 } from 'react-native';
 
+
+
+
+var Test = {
+    
+  testFunction3: function(){
+    return 'testidata3';
+  },
+
+};
+
+
+
 var custom_functions = React.createClass({
 
   testFunction1: function(){
-    return 'testidata';
+    return 'testidata1';
   },
 
   render: function(){
@@ -33,7 +46,7 @@ var Box = React.createClass({
   testFunction2: function(){
     //tämä ei toimi:
     //return this.testFunction1();
-      return custom_functions.testFunction1();
+      return Test.testFunction3();
   },
 
   render: function(){
