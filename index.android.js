@@ -11,8 +11,15 @@ import React, {
   View
 } from 'react-native';
 
+var TestA = require('./TestA');
+var TestB = require('./TestB');
+var TestC = require('./TestC');
+var Global = require('./Globals');
 
 
+var TestText = "TestText";
+//global.mySet = function mySet(text) { TestText = text };
+global.myGet = function myGet() { return TestText };
 
 var Test = {
     
@@ -31,19 +38,37 @@ var custom_functions = React.createClass({
   },
 
   render: function(){
+    
+      
+    //mySet("testing");
+      
     return (
       <View style={styles.container}>
         <Box></Box>
-        <Text></Text>
+        <Text>{myfunction()}</Text>
+        <Text>{Global.COLOR.ORANGE}</Text>  
+        <Text>{myGet()}</Text>
+        <Text>{TestB()}</Text>
+        <Text>{TestC.testFunctionC1()}</Text>
+        <Text>{TestC.testFunctionC2()}</Text>
+        <Text>{TestC.testFunctionC3()}</Text>
       </View>
     );
   }
 });
 
+
+
 var Box = React.createClass({
 
   //funktiokutsu tässä eikä alempana <Text> -sisällä, jotta voidaan käyttää muutakin kuin jsx:ää
   testFunction2: function(){
+      
+    //ei toimi
+    //mySet("testing");
+
+      
+      
     //tämä ei toimi:
     //return this.testFunction1();
       return Test.testFunction3();
