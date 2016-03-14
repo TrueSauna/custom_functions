@@ -52,7 +52,7 @@ var custom_functions = React.createClass({
     
   changeState(newState){
       this.setState({
-          testState: newState
+          testState: newState   //Testing
           
       })
 
