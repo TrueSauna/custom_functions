@@ -14,6 +14,7 @@ import React, {
 var TestA = require('./TestA');
 var TestB = require('./TestB');
 var TestC = require('./TestC');
+var TestD = require('./TestD');
 var Global = require('./Globals');
 
 
@@ -39,6 +40,24 @@ var Test = {
 
 
 var custom_functions = React.createClass({
+    
+    
+  getInitialState(){
+      return {
+          testState: "initial state"
+          
+      }
+      
+  },
+    
+  changeState(newState){
+      this.setState({
+          testState: newState
+          
+      })
+
+  },
+    
 
   testFunction1: function(){
     return 'testidata1';
@@ -46,7 +65,7 @@ var custom_functions = React.createClass({
 
   render: function(){
     
-      
+    //this.changeState("test");  
     //mySet("testing");
       
     return (
@@ -61,6 +80,9 @@ var custom_functions = React.createClass({
         <Text>{TestC.testFunctionC3()}</Text>
         <TestA testProp="testing"></TestA>
         <TestA/>
+        <Text>{this.state.testState}</Text>
+        <TestD changeStateFunction={this.changeState}></TestD>
+        <Text>{this.state.testState}</Text>
       </View>
     );
   }
