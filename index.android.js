@@ -17,9 +17,16 @@ var TestC = require('./TestC');
 var Global = require('./Globals');
 
 
+
+
+
 var TestText = "TestText";
 //global.mySet = function mySet(text) { TestText = text };
 global.myGet = function myGet() { return TestText };
+
+
+
+
 
 var Test = {
     
@@ -52,6 +59,8 @@ var custom_functions = React.createClass({
         <Text>{TestC.testFunctionC1()}</Text>
         <Text>{TestC.testFunctionC2()}</Text>
         <Text>{TestC.testFunctionC3()}</Text>
+        <TestA testProp="testing"></TestA>
+        <TestA/>
       </View>
     );
   }

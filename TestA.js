@@ -20,7 +20,7 @@ var TestA = React.createClass({
 
     return (
         <View>
-            <Text>TestA Render</Text>
+            <Text>TestA Render {this.props.testProp}</Text>
         </View>
     );
   }
