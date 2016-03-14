@@ -19,7 +19,7 @@ var Global = require('./Globals');
 
 
 
-
+var initialState = "";
 
 var TestText = "TestText";
 //global.mySet = function mySet(text) { TestText = text };
@@ -51,6 +51,7 @@ var custom_functions = React.createClass({
   },
     
   changeState(newState){
+      initialState = this.state.testState;
       this.setState({
           testState: newState   //Testing
           
@@ -64,6 +65,7 @@ var custom_functions = React.createClass({
   },
 
   render: function(){
+    
     
     //this.changeState("test");  
     //mySet("testing");
@@ -80,7 +82,7 @@ var custom_functions = React.createClass({
         <Text>{TestC.testFunctionC3()}</Text>
         <TestA testProp="testing"></TestA>
         <TestA/>
-        <Text>{this.state.testState}</Text>
+        <Text>{initialState}</Text>
         <TestD changeStateFunction={this.changeState}></TestD>
         <Text>{this.state.testState}</Text>
       </View>
