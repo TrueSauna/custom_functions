@@ -8,7 +8,8 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight,
 } from 'react-native';
 
 var TestA = require('./TestA');
@@ -18,7 +19,6 @@ var TestD = require('./TestD');
 var Global = require('./Globals');
 
 
-
 var initialState = "";
 
 var TestText = "TestText";
@@ -26,84 +26,100 @@ var TestText = "TestText";
 global.myGet = function myGet() { return TestText };
 
 
-
-
-
 var Test = {
-    
   testFunction3: function(){
     return 'testidata3';
   },
-
 };
 
 
-
 var custom_functions = React.createClass({
-    
-    
+
+  _tpstyles:{},
+  _tpPreviousTop:0,
+  _tpPreviousLeft:0,
+
   getInitialState(){
       return {
           testState: "initial state"
-          
       }
-      
   },
-    
+
+
+  componentWillMount: function(){
+    this._tpStyles = {
+      style: {
+        top:10,
+        left:150
+      }
+    };
+  },
+
+
   changeState(newState){
       initialState = this.state.testState;
       this.setState({
           testState: newState   //Testing
-          
       })
-
   },
-    
+
 
   testFunction1: function(){
     return 'testidata1';
   },
 
+
+  onPressFunction: function(){
+
+      this._tpStyles.style.width = 120;
+      this._tpStyles.style.height = 120;
+      this._tpStyles.style.left = 140;
+
+      this._touchPanel.setNativeProps(this._tpStyles);
+  },
+  
+
   render: function(){
-    
-    
-    //this.changeState("test");  
+
+    //this.changeState("test");
     //mySet("testing");
-      
+
     return (
       <View style={styles.container}>
         <Box></Box>
+
         <Text>{myfunction()}</Text>
-        <Text>{Global.COLOR.ORANGE}</Text>  
+
+        <Text>{Global.COLOR.ORANGE}</Text>
+
         <Text>{myGet()}</Text>
         <Text>{TestB()}</Text>
+
         <Text>{TestC.testFunctionC1()}</Text>
         <Text>{TestC.testFunctionC2()}</Text>
         <Text>{TestC.testFunctionC3()}</Text>
+
         <TestA testProp="testing"></TestA>
         <TestA/>
+
         <Text>{initialState}</Text>
         <TestD changeStateFunction={this.changeState}></TestD>
         <Text>{this.state.testState}</Text>
+
+
+        <TouchableHighlight underlayColor='blue' style={styles.touchPanel} onPress={this.onPressFunction} ref={component => this._touchPanel = component}{...this.props}>
+          <Text></Text>
+        </TouchableHighlight>
+
+
       </View>
     );
   }
 });
 
 
-
 var Box = React.createClass({
-
-  //funktiokutsu tässä eikä alempana <Text> -sisällä, jotta voidaan käyttää muutakin kuin jsx:ää
   testFunction2: function(){
-      
-    //ei toimi
-    //mySet("testing");
-
-      
-      
-    //tämä ei toimi:
-    //return this.testFunction1();
       return Test.testFunction3();
   },
 
@@ -116,21 +132,30 @@ var Box = React.createClass({
   }
 });
 
-const styles = StyleSheet.create({
+
+
+var styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  touchPanel: {
+    position: 'absolute',
+    width:100,
+    height:100,
+    backgroundColor:'green',
+    top:10,
+    left:150,
+  },
   box:{
     position:'absolute',
     backgroundColor:'red',
     width:100,
     height:100,
-    left:100,
-    top:100,
-
+    left:10,
+    top:10,
   },
   welcome: {
     fontSize: 20,
